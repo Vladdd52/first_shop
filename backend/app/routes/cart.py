@@ -32,8 +32,8 @@ class RemoveFromCartRequest(BaseModel):
 @router.post("/add", status_code=status.HTTP_200_OK)
 def add_to_cart(request: AddToCartRequest, db: Session = Depends(get_db)):
     service = CartService(db)
-    item = CartItemCreate(request.product_id, request.quantity)
-    updated_cart = service.add_to_cart(request.cart, item)
+    item = CartItemCreate(product_id=request.product_id, quantity=request.quantity)
+    updated_cart = service.add_to_cart(cart_data=request.cart, item=item)
     return {
         "cart": updated_cart
     }
@@ -48,7 +48,7 @@ def get_cart(cart_data: Dict[int, int], db: Session = Depends(get_db)):
 @router.put("/update", status_code=status.HTTP_200_OK)
 def update_cart(request: UpdateCartRequest, db: Session = Depends(get_db)):
     service = CartService(db)
-    item = CartItemUpdate(request.product_id, request.quantity)
+    item = CartItemCreate(product_id=request.product_id, quantity=request.quantity)
     updated_cart = service.update_cart_item(request.cart, item)
     return {"cart": updated_cart}
 

@@ -44,5 +44,5 @@ app.include_router(cart_router)
 def root():
     return {
         'message': 'Welcome to fastapi shop API',
-        "docs": "api/docs",
+        "docs": "/api/docs",
     }

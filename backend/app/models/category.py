@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy import Integer, String
 
 from ..database import Base
-from .product import Product
 
 class Category(Base):
     __tablename__ = "categories"
@@ -12,7 +11,8 @@ class Category(Base):
     name: Mapped[str] = mapped_column(String, unique=True, index=True, nullable=False)
     slug: Mapped[str] = mapped_column(String, unique=True, index=True, nullable=False)
 
-    products: Mapped[List["Product"]] = relationship(
+    products = relationship(
+        "Product",
         back_populates="category"
     )
     

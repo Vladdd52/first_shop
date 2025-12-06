@@ -5,7 +5,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Text, Float, Integer, DateTime, ForeignKey
 
 from ..database import Base
-from .category import Category
 
 class Product(Base):
     __tablename__ = "products"
@@ -22,7 +21,7 @@ class Product(Base):
         nullable=False
     )
 
-    category: Mapped["Category"] = relationship(back_populates="products")
+    category = relationship("Category", back_populates="products")
 
     def __repr__(self):
         return f"<Product(id={self.id}, name={self.name}, price={self.price}, category_id={self.category_id})>"

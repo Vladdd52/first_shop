@@ -16,7 +16,7 @@
         <!-- кнопка закрытия -->
         <button
           @click="$emit('close')"
-          class="absolute top-3 right-3 p-1.5 hover:bg-gray-100 rounded-lg"
+          class="absolute top-3 right-3 p-4 hover:bg-gray-100 rounded-lg"
         >
           <X class="w-5 h-5" />
         </button>
@@ -24,7 +24,7 @@
         <div class="p-4">
           <!-- Image -->
           <div class="flex justify-center mb-4">
-            <div class="w-40 h-40 bg-gray-200 rounded-lg flex items-center justify-center">
+            <div class="bg-gray-200 rounded-lg flex items-center justify-center">
               <img
                 v-if="product.image_url"
                 :src="product.image_url"
@@ -36,7 +36,7 @@
           </div>
 
           <!-- Details -->
-          <div class="text-center">
+          <div class="">
             <span class="text-xs text-blue-600 font-medium block mb-1">
               {{ product.category?.name }}
             </span>
@@ -55,11 +55,19 @@
             >
               {{ product.description }}
             </p>
-
-            <div class="flex gap-2">
+            <div class="flex flex-col">
+              <span class="text-xs text-gray-500">
+                ID: {{ product.id }}
+              </span> <br>
+              <span class="text-xs text-gray-500">
+                Дата добавления: {{ formatDate(product.created_at) }}
+              </span>
+            </div>
+            
+            <div class="flex gap- justify-center">
               <button
                 @click="handleAddToCart"
-                class="flex-1 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700"
+                class="px-8 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700"
               >
                 В корзину
               </button>
